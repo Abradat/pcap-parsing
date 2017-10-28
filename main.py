@@ -49,8 +49,13 @@ def generateUnHex(pcapFile):
 
     for finalLine in finalLines:
         tmp = ""
+        flag = False
         for inMyLine in finalLine:
-            if(inMyLine.isdigit()):
+            if(inMyLine.isdigit() or inMyLine.isalpha()):
+                tmp += inMyLine
+                if(not flag):
+                    flag = True
+            if(inMyLine == " " and flag):
                 tmp += inMyLine
             finalLine = tmp
         myUnHexFile.write(finalLine)
