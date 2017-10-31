@@ -55,7 +55,7 @@ def generateUnHex(pcapFile):
                 tmp += inMyLine
                 if(not flag):
                     flag = True
-            if(inMyLine == " " and flag):
+            if((inMyLine == " " or inMyLine == ".") and flag):
                 tmp += inMyLine
             finalLine = tmp
         myUnHexFile.write(finalLine)
