@@ -66,7 +66,7 @@ def generateUnHex(pcapFile):
 
 def generateIPs(pcapFile):
     print("Going to make " + pcapFile + " IPs File\n\n")
-    os.system("tshark -r " + "pcaps/" + pcapFile + ".pcap -T fields -e ip.dst -e ip.src >" + "IPs/" + pcapFile + "-ips")
+    os.system("tshark -r " + "pcaps/" + pcapFile + ".pcap -T fields -e ip.src -e ip.dst >" + "IPs/" + pcapFile + "-ips")
     print("IPs file Created\n\n*******************\n\n")
 
 def main():
