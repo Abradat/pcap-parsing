@@ -4,6 +4,7 @@
         1) csv
         2) byte
         3) unhex // First generates the hex file in the 'HexFiles' Directory, then unhexlify it to unhex file in 'UnHexFiles' Directory
+        4) ip
 
     example:
         1 ) python main.py iperf-mptcp-0-0 csv byte unhex
@@ -63,6 +64,10 @@ def generateUnHex(pcapFile):
     myUnHexFile.close()
     print("unhex file Created\n\n*******************\n\n")
 
+def generateIPs(pcapFile):
+    print("Going to make " + pcapFile + " IPs File\n\n")
+    os.system("tshark -r " + "pcaps/" + pcapFile + ".pcap -T fields -e ip.dst -e ip.src >" + "IPs/" + pcapFile + "-ips")
+    print("IPs file Created\n\n*******************\n\n")
 
 def main():
 
@@ -82,6 +87,7 @@ def main():
             generateCSV(pcapFile)
             generateBytes(pcapFile)
             generateUnHex(pcapFile)
+            generateIPs(pcapFile)
 
         else:
             for outputArg in outputArgs:
@@ -93,6 +99,9 @@ def main():
 
                 elif(outputArg == "unhex"):
                     generateUnHex(pcapFile)
+
+                elif(outputArg == "ip"):
+                    generateIPs(pcapFile)
 
                 else:
                     print("Given Argument is not correct")
